@@ -14,3 +14,4 @@ skipExt       = @["nim"]
 # Dependencies
 
 requires "nim >= 1.2.0"
+requires "karax >= 1.1.1"

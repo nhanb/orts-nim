@@ -1,1 +1,5 @@
 /bin
+/web/state.json
+
+# KDE Dophin crap
+.directory

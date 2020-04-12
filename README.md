@@ -5,7 +5,7 @@ choosenim devel
 # https://github.com/nim-lang/Nim/issues/13937
 nimble install
 
-git ls-files | entr -r nimble run orts
+git ls-files | entr -r nimble run --verbose orts
 ```
 
 On unix-likes:
