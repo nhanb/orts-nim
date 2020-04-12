@@ -8,7 +8,7 @@ choosenim devel
 nimble install
 
 # watch source files to rebuild + run server on change
-git ls-files | entr -rc ./build_and_run.sh
+git ls-files '*.nim' | entr -rc ./build_and_run.sh
 ```
 
 See **orts.nimble** for convenient build tasks.
@@ -25,13 +25,13 @@ First run the **orts(.exe)** executable, then:
 On unix-likes:
 
 ```sh
-chromium --app=http://localhost:8008/gui/ --window-size=600,200
+chromium --app=http://localhost:8008/gui/ --window-size=500,200
 ```
 
 Or on windows:
 
 ```powershell
-Start-Process chrome.exe --app=http://localhost:8008/gui/ --window-size=600,200
+Start-Process chrome.exe --app=http://localhost:8008/gui/ --window-size=500,200
 ```
 
 ## 2. Configure OBS

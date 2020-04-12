@@ -14,7 +14,7 @@ skipExt       = @["nim"]
 # Dependencies
 
 requires "nim >= 1.2.0"
-requires "karax >= 1.1.1"
+requires "karax >= 1.1.2"
 
 
 # Build tasks, basically used as poor man's cross-platform Makefile:

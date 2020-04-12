@@ -1,3 +1,50 @@
 html {
-  background-color: #ccc;
+  font-size: 14px;
+  padding: 2px;
+  font-family: "Ubuntu", sans-serif;
+}
+
+.main {
+  display: grid;
+  grid-gap: 3px;
+}
+
+.player {
+  display: grid;
+  grid-gap: 3px;
+  grid-template-areas:
+    "plabel pname pcountry pscore win"
+    "tlabel tname tname    tname  win";
+  grid-auto-columns: min-content auto 50px 50px min-content;
+  width: 100%;
+}
+
+.plabel {
+  grid-area: plabel;
+  white-space: nowrap;
+}
+
+.pname {
+  grid-area: pname;
+}
+
+.pscore {
+  grid-area: pscore;
+}
+
+.pcountry {
+  grid-area: pcountry;
+}
+
+.win {
+  grid-area: win;
+  white-space: nowrap;
+}
+
+.tlabel {
+  grid-area: tlabel;
+}
+
+.tname {
+  grid-area: tname;
 }
