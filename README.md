@@ -3,13 +3,15 @@
 ```sh
 pacman -S entr
 choosenim devel
-# ^ because current stable (1.2) is broken:
+# ^ because current stable (1.2.0) is broken:
 # https://github.com/nim-lang/Nim/issues/13937
 nimble install
 
-# watch source files & rebuild on change
-git ls-files | entr -r nimble run --verbose orts
+# watch source files to rebuild + run server on change
+git ls-files | entr -rc ./build_and_run.sh
 ```
+
+See **orts.nimble** for convenient build tasks.
 
 
 # Run
