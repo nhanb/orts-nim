@@ -18,9 +18,9 @@ var server = newAsyncHttpServer()
 proc cb(req: Request) {.async.} =
   var path = req.url.path[1..^1]
 
-  if path.startswith("scoreboard/"):
-    if path == "scoreboard/":
-      path = "scoreboard/index.html"
+  if path.startswith("scoreboard/") or path.startswith("gui/"):
+    if path == "scoreboard/" or path == "gui/":
+      path &= "index.html"
 
     # TODO: letting unsanitized GET param dictate file read smells like a
     # security hazard but since this http server is only accessible locally it's

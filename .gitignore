@@ -1,5 +1,6 @@
 /bin
 /web/state.json
+/gui/index.js
 
 # KDE Dophin crap
 .directory
