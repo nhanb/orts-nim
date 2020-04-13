@@ -8,10 +8,10 @@ choosenim devel
 nimble install
 
 # watch source files to rebuild + run server on change
-git ls-files '*.nim' | entr -rc ./build_and_run.sh
+git ls-files '*.nim' | entr -rc nim dev
 ```
 
-See **orts.nimble** for convenient build tasks.
+See **config.nims** or run `nim help` for available convenient build tasks.
 
 
 # Run
