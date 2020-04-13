@@ -1,7 +1,8 @@
 html {
-  font-size: 14px;
-  padding: 2px;
-  font-family: "Ubuntu", sans-serif;
+  font-size: 13px;
+  padding: 3px;
+  font-family: sans-serif;
+  background: #eee;
 }
 
 .main {
@@ -18,10 +19,18 @@ html {
   grid-auto-columns: min-content auto 50px 50px min-content;
   width: 100%;
 }
+.player > .label {
+  text-align: right;
+}
+
+.label {
+  margin-top: auto;
+  margin-bottom: auto;
+  white-space: nowrap;
+}
 
 .plabel {
   grid-area: plabel;
-  white-space: nowrap;
 }
 
 .pname {
@@ -47,4 +56,29 @@ html {
 
 .tname {
   grid-area: tname;
+}
+
+.action-buttons {
+  display: grid;
+  grid-auto-flow: column;
+  grid-gap: 5px;
+  position: fixed;
+  left: 3px;
+  right: 3px;
+  bottom: 3px;
+}
+
+hr {
+  width: 100%;
+  border: 0;
+  height: 1px;
+  border-bottom: 1px solid white;
+  background-color: #ccc;
+}
+
+.match-desc {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: min-content auto;
+  grid-gap: 3px;
 }

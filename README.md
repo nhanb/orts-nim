@@ -25,13 +25,13 @@ First run the **orts(.exe)** executable, then:
 On unix-likes:
 
 ```sh
-chromium --app=http://localhost:8008/gui/ --window-size=500,200
+chromium --app=http://localhost:8008/gui/ --window-size=500,220
 ```
 
 Or on windows:
 
 ```powershell
-Start-Process chrome.exe --app=http://localhost:8008/gui/ --window-size=500,200
+Start-Process chrome.exe --app=http://localhost:8008/gui/ --window-size=500,220
 ```
 
 ## 2. Configure OBS

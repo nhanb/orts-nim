@@ -89,6 +89,7 @@ video {
   box-sizing: border-box;
 }
 
-input {
+input,
+button {
   font: inherit;
 }

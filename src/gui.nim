@@ -1,6 +1,6 @@
-include karax / prelude
-include karax / [kajax, jjson]
-import karax / kdom
+import json
+import karax / [kbase, karax, karaxdsl, vdom, jstrutils, kajax]
+import rpc
 
 type k = kstring
 
@@ -11,11 +11,27 @@ type Player = object
   score: int
 
 type State = object
+  matchDescription: kstring
   player1: Player
   player2: Player
 
 
+proc `$`(s: State): string =
+  $(%*{
+    "match_description": $s.matchDescription,
+    "p1name": $s.player1.name,
+    "p1country": $s.player1.country,
+    "p1score": $s.player1.score,
+    "p1team": $s.player1.team,
+    "p2name": $s.player2.name,
+    "p2country": $s.player2.country,
+    "p2score": $s.player2.score,
+    "p2team": $s.player2.team,
+  })
+
+
 var state = State(
+  matchDescription: "EVO Grand Finals",
   player1: Player(
     name: "Daigo Umehara",
     team: "Team Japan",
@@ -23,24 +39,25 @@ var state = State(
     score: 0,
   ),
   player2: Player(
-    name: "Justin Wong",
-    team: "Team US",
+    name: "",
+    team: "",
     country: "us",
     score: 1,
   ),
 )
 
 proc renderPlayer(num: kstring, p: var Player): VNode =
-  let scoreId = "p" & num & "score"
+  let scoreId: kstring = "p" & num & "score"
 
-  buildHtml(tdiv(class=k"player")):
-    span(class="plabel"): text "Player " & num
+  buildHtml(tdiv(class="player")):
+    span(class="plabel label"): text "Player " & num
     input(
       class="pname",
       list="pname-list",
-      placeholder="Player Name",
       value=p.name,
       id="p" & num & "name",
+      onchange = proc (ev: Event, n: VNode) =
+        p.name = n.value
     )
     datalist(id="pname-list"):
       option(value="Daigo Umehara")
@@ -49,7 +66,6 @@ proc renderPlayer(num: kstring, p: var Player): VNode =
     input(
       class="pcountry",
       list="pcountry-list",
-      placeholder="Country",
       id="p" & num & "country",
       value=p.country,
       onchange = proc (ev: Event, n: VNode) =
@@ -64,10 +80,18 @@ proc renderPlayer(num: kstring, p: var Player): VNode =
       `type`="number",
       value= $p.score,
       id=scoreId,
+      onchange = proc (ev: Event, n: VNode) =
+        p.score = parseInt(n.value)
     )
 
-    span(class="tlabel"): text "Team " & num
-    input(class="tname", list="tname-list", placeholder="Team Name", value=p.team)
+    span(class="tlabel label"): text "Team " & num
+    input(
+      class="tname",
+      list="tname-list",
+      value=p.team,
+      onchange = proc (ev: Event, n: VNode) =
+        p.team = n.value
+    )
     datalist(id="tlabel-list"):
       option(value="Team Japan")
       option(value="Team US")
@@ -84,8 +108,37 @@ proc renderPlayer(num: kstring, p: var Player): VNode =
 
 proc createDom(data: RouterData): VNode =
   result = buildHtml(tdiv(class="main")):
+
+    tdiv(class="match-desc"):
+      span(class="label"): text "Match description"
+      input(id="match-description", value=state.matchDescription)
+
+    hr()
+
     renderPlayer("1", state.player1)
+    hr()
     renderPlayer("2", state.player2)
+
+    tdiv(class="action-buttons"):
+      button(
+        onclick = proc (ev: Event; n: VNode) =
+          let rpc = Rpc(
+            kind: Apply,
+            newState: $state
+          )
+          let payload = %*rpc
+          ajaxPost(
+            url = "/api",
+            headers = [(k"Content-Type", k"application/json")],
+            data = $payload,
+            cont = proc (httpStatus: int, response: kstring) =
+              echo(httpStatus)
+              echo(response)
+          )
+      ): text "▶ Apply"
+      button(): text "✖ Discard"
+      button(): text "↶ Reset scores"
+      button(): text "⇄ Swap players"
 
 
 setRenderer createDom
