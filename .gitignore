@@ -2,6 +2,7 @@
 /web/state.json
 /gui/index.js
 /scoreboard/state.json
+/mintgui/dist/
 
 # KDE Dophin crap
 .directory

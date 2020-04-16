@@ -1,0 +1,72 @@
+html {
+  font-size: 12px;
+  padding: 3px;
+  font-family: "Segoe UI", sans-serif;
+  background: #eee;
+}
+
+.player {
+  display: grid;
+  grid-gap: 3px;
+  grid-template-areas:
+    "plabel pname pcountry pscore win"
+    "tlabel tname tname    tname  win";
+  grid-auto-columns: min-content auto 50px 50px min-content;
+  width: 100%;
+}
+.player > .label {
+  text-align: right;
+}
+
+.label {
+  margin-top: auto;
+  margin-bottom: auto;
+  white-space: nowrap;
+}
+
+.plabel {
+  grid-area: plabel;
+}
+
+.pname {
+  grid-area: pname;
+}
+
+.pscore {
+  grid-area: pscore;
+}
+
+.pcountry {
+  grid-area: pcountry;
+}
+
+.win {
+  grid-area: win;
+  white-space: nowrap;
+}
+
+.tlabel {
+  grid-area: tlabel;
+}
+
+.tname {
+  grid-area: tname;
+}
+
+.action-buttons {
+  display: grid;
+  grid-auto-flow: column;
+  grid-gap: 5px;
+  position: fixed;
+  left: 3px;
+  right: 3px;
+  bottom: 3px;
+}
+
+hr {
+  width: 100%;
+  border: 0;
+  height: 1px;
+  border-bottom: 1px solid white;
+  background-color: #ccc;
+}

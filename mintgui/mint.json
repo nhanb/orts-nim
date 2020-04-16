@@ -1,0 +1,9 @@
+{
+  "name": "mintgui",
+  "application": {
+    "head": "assets/head.html",
+    "title": "Overly Repetitive Tedious Software"
+  },
+  "source-directories": ["source"],
+  "test-directories": ["tests"]
+}
