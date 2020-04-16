@@ -28,10 +28,10 @@ On unix-likes:
 chromium --app=http://localhost:8008/gui/ --window-size=500,220
 ```
 
-Or on windows:
+Or on windows powershell:
 
 ```powershell
-Start-Process chrome.exe --app=http://localhost:8008/gui/ --window-size=500,220
+start chrome.exe '--app=http://localhost:8008/gui/ --window-size=500,230'
 ```
 
 ## 2. Configure OBS
