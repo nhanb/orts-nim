@@ -1,5 +1,7 @@
 import strformat, strutils
+
 switch("hints", "off")
+switch("outdir", "bin")
 
 proc compile(backend, source, output, buildargs="") =
   let cmd = fmt"nim {backend} --hints:off {buildargs} -o:{output} src/{source}"
